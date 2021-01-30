@@ -113,7 +113,8 @@ namespace DZ_26_01_21
 				// сотруднике (фамилия, имя, должность), оклад (заработная плата) и
 				// налоговый сбор (13 % налог + 1% пенсионный фонд) от заработной платы.
 				var emp = new Employee("Шахзод", "Джабборов");
-				emp.Position = "Junior";
+				emp.Position = "Middle";
+				emp.WorkExperience = 4;
 				emp.Show();
 			}
 		}

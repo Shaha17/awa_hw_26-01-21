@@ -8,6 +8,7 @@ namespace DZ_26_01_21
 		public string Name { get; set; }
 		public string Surname { get; set; }
 		public string Position { get; set; }
+		public int WorkExperience { get; set; }
 		public Employee(string name, string surname)
 		{
 			this.Name = name;
@@ -17,16 +18,17 @@ namespace DZ_26_01_21
 		{
 			double tax = this.CalcTax();
 			double salary = this.CalcSalaryWithoutTax();
-			Console.WriteLine($"Сотрудник {this.Surname} {this.Name}\nНа должности {this.Position}\nЗарплата {this.CalcSalaryWithoutTax()}\nНалоговый сбор {this.CalcTax()}");
+			Console.WriteLine($"Сотрудник {this.Surname} {this.Name}\nНа должности {this.Position}\nСтаж {this.WorkExperience} лет\nЗарплата {this.CalcSalaryWithoutTax()}\nНалоговый сбор {this.CalcTax()}");
 		}
 
 		public double CalcTax()
 		{
-			return taxFee * this.CalcSalaryWithoutTax();
+			return Math.Round(taxFee * this.CalcSalaryWithoutTax(), 2);
 		}
 		double CalcSalaryWithoutTax()
 		{
-			return this.Position.ToLower() switch
+			double expBonus = 1 + Math.Min( this.WorkExperience * 0.5, 2.5);
+			double salary = this.Position.ToLower() switch
 			{
 				"junior" => 1000,
 				"middle" => 2000,
@@ -35,6 +37,7 @@ namespace DZ_26_01_21
 				"head of project" => 4000,
 				_ => 0
 			};
+			return Math.Round(expBonus * salary, 2);
 		}
 	}
 }
